@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ item.title }} | The Learning Room</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 24px;
+            background: #fff7fb;
+            color: #725467;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 30px auto;
+            padding: 28px;
+            background: white;
+            border: 1px solid #f1d7e4;
+            border-radius: 18px;
+        }
+
+        h1 {
+            color: #b76d94;
+            overflow-wrap: anywhere;
+        }
+
+        .viewer {
+            margin-top: 24px;
+            min-height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            border-radius: 12px;
+            background: #fffafd;
+        }
+
+        iframe {
+            width: 100%;
+            height: 70vh;
+            border: none;
+            background: white;
+        }
+
+        video, audio {
+            width: 100%;
+            max-height: 70vh;
+        }
+
+        img {
+            max-width: 100%;
+            max-height: 70vh;
+            object-fit: contain;
+        }
+
+        a {
+            color: #a65d82;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 16px;
+            margin: 8px 6px 8px 0;
+            border-radius: 10px;
+            background: #f9dfeb;
+            text-decoration: none;
+        }
+
+        .hint {
+            color: #987e90;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+        <a href="{{ url_for('home') }}">← Back to The Learning Room</a>
+
+        <h1>୨୧ {{ item.title }} ♡</h1>
+        <p>{{ item.subject or "Your learning material" }}</p>
+
+        {% if item.stored_name %}
+        <a class="button"
+           href="{{ url_for('material_file', material_id=item.id) }}?download=1">
+            Download file ↓
+        </a>
+        {% endif %}
+
+        <section class="viewer">
+            {% if item.kind == "video" %}
+                <video controls playsinline>
+                    <source src="{{ url_for('material_file', material_id=item.id) }}">
+                    Browser kamu belum mendukung video ini.
+                </video>
+
+            {% elif item.kind == "audio" %}
+                <audio controls>
+                    <source src="{{ url_for('material_file', material_id=item.id) }}">
+                </audio>
+
+            {% elif item.kind == "pdf" %}
+                <iframe
+                    src="{{ url_for('material_file', material_id=item.id) }}"
+                    title="PDF preview">
+                </iframe>
+
+            {% elif item.kind == "image" %}
+                <img
+                    src="{{ url_for('material_file', material_id=item.id) }}"
+                    alt="{{ item.title }}">
+
+            {% elif item.kind == "office" %}
+                <div>
+                    <h2>📚 Your document is ready!</h2>
+                    <p>Download file ini untuk membukanya di PowerPoint, Word, atau aplikasi yang sesuai.</p>
+                    <a class="button"
+                       href="{{ url_for('material_file', material_id=item.id) }}?download=1">
+                        Download document
+                    </a>
+                </div>
+
+            {% elif item.url %}
+                <div>
+                    <h2>♡ Your material link</h2>
+                    <a class="button"
+                       href="{{ item.url }}"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        Open original link ↗
+                    </a>
+                </div>
+
+            {% else %}
+                <div>
+                    <h2>♡ Your material is ready</h2>
+                    <p>Gunakan tombol Download untuk membuka file.</p>
+                </div>
+            {% endif %}
+        </section>
+
+        <p class="hint">
+            PDF, video, audio, dan gambar dapat ditampilkan jika formatnya
+            didukung browser. File PPT dan dokumen tertentu perlu dibuka
+            menggunakan aplikasi yang sesuai.
+        </p>
+    </main>
+</body>
+</html>

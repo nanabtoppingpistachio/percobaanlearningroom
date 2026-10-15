@@ -1,0 +1,3189 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>The Learning Room ♡</title>
+
+
+
+    <style>
+
+        :root {
+
+            --paper: #fffdfd;
+
+            --pink: #f8edf1;
+
+            --pink-dark: #ead5de;
+
+            --rose: #c49aaa;
+
+            --ink: #63565d;
+
+            --muted: #9c8e95;
+
+            --line: #e8dce1;
+
+            --white: #ffffff;
+
+        }
+
+
+
+        * {
+
+            box-sizing: border-box;
+
+        }
+
+
+
+        body {
+
+            margin: 0;
+
+            background-color: #faf7f8;
+
+            color: var(--ink);
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+
+        }
+
+
+
+        button, input, select, textarea {
+
+            font: inherit;
+
+        }
+
+
+
+        button, a, select {
+
+            -webkit-tap-highlight-color: transparent;
+
+        }
+
+
+
+        button {
+
+            cursor: pointer;
+
+        }
+
+
+
+        a {
+
+            color: inherit;
+
+            text-decoration: none;
+
+        }
+
+
+
+        button:focus-visible, a:focus-visible,
+
+        input:focus-visible, textarea:focus-visible,
+
+        select:focus-visible {
+
+            outline: 2px solid var(--rose);
+
+            outline-offset: 3px;
+
+        }
+
+
+
+        .browser {
+
+            max-width: 1320px;
+
+            margin: 24px auto;
+
+            padding: 12px;
+
+            background: var(--white);
+
+            border: 1px solid var(--line);
+
+            border-radius: 10px;
+
+            box-shadow: 0 8px 30px #bba6b31a;
+
+        }
+
+
+
+        .browser-bar {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 12px;
+
+            padding: 9px 13px;
+
+            background: #f7f2f4;
+
+            border: 1px solid var(--line);
+
+            border-radius: 6px;
+
+        }
+
+
+
+        .browser-brand {
+
+            font-weight: 700;
+
+            letter-spacing: .4px;
+
+        }
+
+
+
+        .browser-brand span {
+
+            color: var(--rose);
+
+        }
+
+.browser-status {
+    color: var(--muted);
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.browser-status a {
+    display: inline-block;
+    padding: 6px 12px;
+    color: #9b536f;
+    background: #ffe4ec;
+    border: 1px solid #d8a6b8;
+    border-radius: 20px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.browser-status a:hover {
+    background: #f8dce7;
+}
+
+
+
+        .search-box {
+
+            width: min(300px, 42%);
+
+            padding: 8px 12px;
+
+            background: var(--white);
+
+            border: 1px solid var(--line);
+
+            border-radius: 20px;
+
+        }
+
+
+
+        .layout {
+
+            display: grid;
+
+            grid-template-columns: 270px minmax(0, 1fr) 225px;
+
+            gap: 14px;
+
+            margin-top: 14px;
+
+            align-items: start;
+
+        }
+
+
+
+        .panel {
+
+            background: var(--white);
+
+            border: 1px solid var(--line);
+
+            border-radius: 7px;
+
+            overflow: hidden;
+
+        }
+
+
+
+        .panel-title {
+
+            padding: 11px 13px;
+
+            background: var(--pink);
+
+            border-bottom: 1px solid var(--line);
+
+            font-weight: 700;
+
+        }
+
+
+
+
+        .sidebar-profile { margin-bottom: 0; }
+        .sidebar-profile .profile-cover {
+            height: 145px;
+            position: relative;
+            background: repeating-linear-gradient(90deg,#f8edf1 0,#f8edf1 13px,#fffafb 13px,#fffafb 26px);
+            background-position: center;
+            background-size: cover;
+            border-bottom: 1px solid var(--line);
+            display: block;
+            overflow: hidden;
+        }
+        .sidebar-profile .profile-cover.has-image { background-repeat: no-repeat; }
+        .sidebar-profile .profile-content { padding: 0 15px 16px; text-align: left; }
+        .sidebar-profile .avatar { margin: -42px 0 8px 10px; width: 84px; height: 84px; z-index: 1; }
+        .sidebar-profile .profile-name { font-size: 18px; overflow-wrap: anywhere; }
+        .sidebar-profile .profile-bio { font-size: 12px; overflow-wrap: anywhere; }
+        .sidebar-profile .profile-edit { margin-bottom: 4px; }
+        .sidebar-profile .profile-cover-label {
+            position: absolute; right: 8px; bottom: 8px; padding: 4px 7px;
+            border: 1px solid #e8dce1; border-radius: 14px; background: #fffdfde8;
+            font-size: 11px; cursor: pointer;
+        }
+        .sidebar-profile .profile-content .avatar img { display:block; }
+        .sidebar-profile .profile-content .avatar { flex-shrink: 0; }
+        @media (max-width: 900px) { .layout { grid-template-columns: 220px minmax(0, 1fr); } }
+        @media (max-width: 620px) { .layout { grid-template-columns: 1fr; } .sidebar-profile .profile-content { text-align: center; } .sidebar-profile .avatar { margin: -42px auto 8px; } }
+
+        .sidebar {
+
+            padding: 13px;
+
+        }
+
+
+
+        .tiny-label {
+
+            color: var(--muted);
+
+            font-size: 11px;
+
+            letter-spacing: 1.4px;
+
+            text-transform: uppercase;
+
+        }
+
+
+
+        .side-link {
+
+            display: block;
+
+            width: 100%;
+
+            margin-top: 5px;
+
+            padding: 9px 10px;
+
+            text-align: left;
+
+            color: var(--ink);
+
+            background: transparent;
+
+            border: 1px solid transparent;
+
+            border-radius: 4px;
+
+        }
+
+
+
+        .side-link:hover,
+
+        .side-link.active {
+
+            background: var(--pink);
+
+            border-color: var(--line);
+
+        }
+
+
+
+        .bow {
+
+            color: var(--rose);
+
+        }
+
+
+
+        .mini-note {
+
+            margin-top: 20px;
+
+            padding: 12px;
+
+            background: #fcf8fa;
+
+            border: 1px dashed var(--pink-dark);
+
+            text-align: center;
+
+            font-size: 12px;
+
+        }
+
+
+
+        .main {
+
+            min-width: 0;
+
+        }
+
+
+
+        .hero {
+
+            position: relative;
+
+            padding: 20px;
+
+            background: var(--pink);
+
+            border: 1px solid var(--pink-dark);
+
+            text-align: center;
+
+        }
+
+
+
+        .hero::before {
+
+            content: "୨୧ ───────── ♡ ───────── ୨୧";
+
+            display: block;
+
+            margin-bottom: 12px;
+
+            color: var(--rose);
+
+            font-size: 12px;
+
+            letter-spacing: 2px;
+
+        }
+
+
+
+        .hero h1 {
+
+            margin: 0;
+
+            font-family: Georgia, "Times New Roman", serif;
+
+            font-size: clamp(25px, 4vw, 38px);
+
+            font-weight: normal;
+
+            line-height: 1.25;
+
+        }
+
+
+
+        .hero p {
+
+            max-width: 430px;
+
+            margin: 10px auto 16px;
+
+            color: #85747c;
+
+        }
+
+
+
+        .button {
+
+            display: inline-block;
+
+            padding: 8px 15px;
+
+            color: var(--ink);
+
+            background: var(--white);
+
+            border: 1px solid var(--pink-dark);
+
+            border-radius: 4px;
+
+        }
+
+
+
+        .button:hover {
+
+            background: #f3e2e9;
+
+        }
+
+
+
+        .button.primary {
+
+            background: var(--pink-dark);
+
+        }
+
+
+
+        .section {
+
+            margin-top: 18px;
+
+        }
+
+
+
+        .section-heading {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 10px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+
+        .section-heading h2,
+
+        .page-title {
+
+            margin: 0;
+
+            font-family: Georgia, "Times New Roman", serif;
+
+            font-weight: normal;
+
+        }
+
+
+
+        .section-heading h2 {
+
+            font-size: 21px;
+
+        }
+
+
+
+        .muted {
+
+            color: var(--muted);
+
+        }
+
+
+
+        .grid-2 {
+
+            display: grid;
+
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+
+            gap: 10px;
+
+        }
+
+
+
+        .card {
+
+            padding: 14px;
+
+            background: var(--white);
+
+            border: 1px solid var(--line);
+
+            border-radius: 6px;
+
+        }
+
+
+
+        .card h3 {
+
+            margin: 5px 0;
+
+            font-size: 15px;
+
+            font-weight: 600;
+
+        }
+
+
+
+        .card p {
+
+            margin: 5px 0 12px;
+
+            color: var(--muted);
+
+            font-size: 12px;
+
+        }
+
+
+
+        .card-icon {
+
+            font-size: 24px;
+
+        }
+
+
+
+        .profile-cover {
+
+            height: 88px;
+
+            background:
+
+                repeating-linear-gradient(
+
+                    90deg,
+
+                    #f8edf1 0,
+
+                    #f8edf1 13px,
+
+                    #fffafb 13px,
+
+                    #fffafb 26px
+
+                );
+
+            border-bottom: 1px solid var(--line);
+
+            display: grid;
+
+            place-items: center;
+
+            color: var(--rose);
+
+            font-size: 23px;
+
+        }
+
+
+
+        .profile-content {
+
+            padding: 0 13px 15px;
+
+            text-align: center;
+
+        }
+
+
+
+        .avatar {
+
+            display: grid;
+
+            place-items: center;
+
+            width: 76px;
+
+            height: 76px;
+
+            margin: -38px auto 8px;
+
+            position: relative;
+
+            background: var(--pink);
+
+            border: 4px solid var(--white);
+
+            border-radius: 50%;
+
+            box-shadow: 0 0 0 1px var(--pink-dark);
+
+            font-size: 28px;
+
+        }
+
+
+
+        .avatar img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            border-radius: 50%;
+
+        }
+
+
+
+        .profile-name {
+
+            margin: 0;
+
+            font-size: 18px;
+
+        }
+
+
+
+        .profile-bio {
+
+            margin: 5px 0 12px;
+
+            color: var(--muted);
+
+            font-size: 12px;
+
+        }
+
+
+
+        .profile-stats {
+
+            display: flex;
+
+            justify-content: space-around;
+
+            padding-top: 10px;
+
+            border-top: 1px dashed var(--line);
+
+            font-size: 12px;
+
+        }
+
+
+
+        .profile-stats strong {
+
+            display: block;
+
+            color: var(--rose);
+
+            font-size: 16px;
+
+        }
+
+
+
+        .right-panel .inner {
+
+            padding: 12px;
+
+        }
+
+
+
+        .widget {
+
+            margin-bottom: 16px;
+
+        }
+
+
+
+        .widget h3 {
+
+            margin: 0 0 8px;
+
+            font-family: Georgia, "Times New Roman", serif;
+
+            font-size: 16px;
+
+            font-weight: normal;
+
+        }
+
+
+
+        .calendar {
+
+            display: grid;
+
+            grid-template-columns: repeat(7, 1fr);
+
+            gap: 3px;
+
+            text-align: center;
+
+            font-size: 11px;
+
+        }
+
+
+
+        .calendar span {
+
+            padding: 3px 0;
+
+            border-radius: 3px;
+
+        }
+
+
+
+        .calendar .today {
+
+            background: var(--pink-dark);
+
+        }
+
+
+
+        .progress-track {
+
+            height: 8px;
+
+            margin-top: 7px;
+
+            background: var(--pink);
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+        }
+
+
+
+        .progress-fill {
+
+            width: 35%;
+
+            height: 100%;
+
+            background: var(--rose);
+
+        }
+
+
+
+        .music-box {
+
+            padding: 10px;
+
+            background: #fcf8fa;
+
+            border: 1px dashed var(--line);
+
+        }
+
+
+
+        .music-box audio {
+
+            display: block;
+
+            width: 100%;
+
+            margin-top: 8px;
+
+        }
+
+
+
+        .page {
+
+            display: none;
+
+        }
+
+
+
+        .page.active {
+
+            display: block;
+
+        }
+
+
+
+        .page-intro {
+
+            padding: 16px;
+
+            background: #fcf8fa;
+
+            border: 1px solid var(--line);
+
+            margin-bottom: 14px;
+
+        }
+
+
+
+        .page-title {
+
+            font-size: 26px;
+
+        }
+
+
+
+        .form-grid {
+
+            display: grid;
+
+            gap: 12px;
+
+        }
+
+
+
+        .field {
+
+            display: grid;
+
+            gap: 5px;
+
+        }
+
+
+
+        .field label {
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+        }
+
+
+
+        .field input,
+
+        .field select,
+
+        .field textarea {
+
+            width: 100%;
+
+            padding: 10px;
+
+            color: var(--ink);
+
+            background: var(--white);
+
+            border: 1px solid var(--line);
+
+            border-radius: 4px;
+
+        }
+
+
+
+        .field textarea {
+
+            min-height: 100px;
+
+            resize: vertical;
+
+        }
+
+
+
+        .shelf {
+
+            display: grid;
+
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+
+            gap: 10px;
+
+        }
+
+
+
+        .book {
+
+            min-height: 125px;
+
+            padding: 12px 8px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            align-items: center;
+
+            text-align: center;
+
+            background: #faf3f6;
+
+            border: 1px solid var(--line);
+
+            border-radius: 4px;
+
+        }
+
+
+
+        .book:nth-child(2n) {
+
+            background: #f5f0f2;
+
+        }
+
+
+
+        .book span {
+
+            font-size: 26px;
+
+        }
+
+
+
+        .book strong {
+
+            margin-top: 7px;
+
+            font-size: 12px;
+
+        }
+
+
+
+        .material-list,
+
+        .note-list,
+
+        .post-list,
+
+        .people-list {
+
+            display: grid;
+
+            gap: 10px;
+
+        }
+
+
+
+        .material-row {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 12px;
+
+            border: 1px solid var(--line);
+
+            border-radius: 5px;
+
+        }
+
+
+
+        .material-row h3 {
+
+            margin: 0;
+
+            font-size: 14px;
+
+        }
+
+
+
+        .material-row p {
+
+            margin: 4px 0 0;
+
+            color: var(--muted);
+
+            font-size: 12px;
+
+            overflow-wrap: anywhere;
+
+        }
+
+
+
+        .privacy-tag {
+
+            display: inline-block;
+
+            padding: 3px 7px;
+
+            background: var(--pink);
+
+            border-radius: 12px;
+
+            font-size: 10px;
+
+        }
+
+
+
+        .empty {
+
+            padding: 22px 12px;
+
+            color: var(--muted);
+
+            text-align: center;
+
+            background: #fcf8fa;
+
+            border: 1px dashed var(--line);
+
+        }
+
+
+
+        .note-item,
+
+        .post-item,
+
+        .person {
+
+            padding: 13px;
+
+            border: 1px solid var(--line);
+
+            border-radius: 5px;
+
+        }
+
+
+
+        .note-item h3,
+
+        .post-item h3,
+
+        .person h3 {
+
+            margin: 0 0 5px;
+
+        }
+
+
+
+        .note-item p,
+
+        .post-item p,
+
+        .person p {
+
+            margin: 5px 0;
+
+            white-space: pre-wrap;
+
+            overflow-wrap: anywhere;
+
+        }
+
+
+
+        .post-meta {
+
+            color: var(--muted);
+
+            font-size: 11px;
+
+        }
+
+
+
+        .person {
+
+            display: flex;
+
+            gap: 12px;
+
+            align-items: center;
+
+        }
+
+
+
+        .person .avatar {
+
+            flex-shrink: 0;
+
+            width: 52px;
+
+            height: 52px;
+
+            margin: 0;
+
+            border-width: 2px;
+
+            font-size: 20px;
+
+        }
+
+
+
+        .person-info {
+
+            min-width: 0;
+
+            flex: 1;
+
+        }
+
+
+
+        .person-info h3 {
+
+            font-size: 14px;
+
+        }
+
+
+
+        .small-button {
+
+            padding: 6px 10px;
+
+            background: var(--white);
+
+            border: 1px solid var(--line);
+
+            border-radius: 4px;
+
+            color: var(--ink);
+
+        }
+
+
+
+        .small-button:hover {
+
+            background: var(--pink);
+
+        }
+
+
+
+        .footer {
+
+            margin-top: 18px;
+
+            padding: 13px;
+
+            text-align: center;
+
+            color: var(--muted);
+
+            background: #f8f2f5;
+
+            border: 1px solid var(--line);
+
+            font-size: 11px;
+
+        }
+
+
+
+        .hidden {
+
+            display: none !important;
+
+        }
+
+
+
+        .status-message {
+
+            margin-top: 10px;
+
+            color: #8a6375;
+
+            font-size: 12px;
+
+        }
+
+
+
+        @media (max-width: 900px) {
+
+            .layout {
+
+                grid-template-columns: 165px minmax(0, 1fr);
+
+            }
+
+
+
+            .right-panel {
+
+                grid-column: 1 / -1;
+
+            }
+
+
+
+            .right-panel .inner {
+
+                display: grid;
+
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+
+                gap: 12px;
+
+            }
+
+        }
+
+
+
+        @media (max-width: 620px) {
+
+            .browser {
+
+                margin: 8px;
+
+                padding: 7px;
+
+            }
+
+
+
+            .browser-bar {
+
+                flex-wrap: wrap;
+
+            }
+
+
+
+            .search-box {
+
+                order: 3;
+
+                width: 100%;
+
+            }
+
+
+
+            .layout {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+
+            .sidebar {
+
+                padding: 9px;
+
+            }
+
+
+
+            .nav-links {
+
+                display: grid;
+
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+
+                gap: 3px;
+
+            }
+
+
+
+            .side-link {
+
+                margin: 0;
+
+            }
+
+
+
+            .right-panel {
+
+                grid-column: auto;
+
+            }
+
+
+
+            .right-panel .inner {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+
+            .grid-2 {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+
+            .shelf {
+
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+
+            }
+
+
+
+            .hero {
+
+                padding: 16px 12px;
+
+            }
+
+        }
+
+.logout-btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-left: 10px;
+    border: 1px solid #d8a6b8;
+    border-radius: 20px;
+    color: #9b536f;
+    background: #fff0f5;
+    text-decoration: none;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.logout-btn:hover {
+    background: #f8dce7;
+}
+
+/* Coquette Vintage Sticky Note */
+.coquette-sticky-note {
+    position: relative;
+    margin: 18px 8px 10px;
+    padding: 16px 14px 12px;
+    background: #fff1f5;
+    border: 1px dashed #d9a4b8;
+    border-radius: 4px 12px 5px 10px;
+    box-shadow: 3px 4px 0 rgba(196, 154, 170, 0.16);
+    color: #805b6a;
+    transform: rotate(-1deg);
+}
+
+.coquette-sticky-note::before {
+    content: "୨୧";
+    position: absolute;
+    top: -12px;
+    left: calc(50% - 20px);
+    padding: 2px 10px;
+    background: #f7dce7;
+    border-radius: 5px;
+    color: #a96f89;
+    font-size: 14px;
+}
+
+.sticky-note-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 7px;
+    border-bottom: 1px dashed #e4bdcb;
+    color: #a96f89;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#sidebarStickyNoteText {
+    margin: 0 0 12px;
+    color: #805b6a;
+    font-size: 12px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.sticky-note-signoff {
+    display: block;
+    text-align: right;
+    color: #a77b8d;
+    font-size: 10px;
+    font-style: italic;
+}
+
+
+        /* Coquette vintage study to-do */
+        .page-heading {
+            padding: 18px;
+            margin-bottom: 14px;
+            text-align: center;
+            background: #fff4f7;
+            border: 1px solid #ead5de;
+            border-radius: 7px;
+        }
+        .page-heading .eyebrow {
+            margin: 0 0 5px;
+            color: #b17d91;
+            font-size: 10px;
+            letter-spacing: 1.5px;
+        }
+        .page-heading h1 {
+            margin: 0;
+            color: #805b6a;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(24px, 3vw, 32px);
+            font-weight: normal;
+        }
+        .page-heading > p:last-child {
+            margin: 7px 0 0;
+            color: #9c8e95;
+            font-size: 12px;
+        }
+        .todo-layout {
+            display: grid;
+            grid-template-columns: minmax(0, .95fr) minmax(0, 1.35fr);
+            gap: 12px;
+            align-items: start;
+        }
+        .todo-form-card {
+            background: #fff9fb;
+            border: 1px dashed #d9a4b8;
+            box-shadow: 2px 3px 0 rgba(196, 154, 170, .10);
+        }
+        .todo-form-card h2,
+        .todo-list-card h2 {
+            margin: 0 0 12px;
+            color: #805b6a;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 19px;
+            font-weight: normal;
+        }
+        .todo-form-card input[type="text"],
+        .todo-form-card input[type="date"] {
+            width: 100%;
+            min-width: 0;
+            padding: 10px;
+            color: var(--ink);
+            background: white;
+            border: 1px solid var(--line);
+            border-radius: 4px;
+        }
+        .todo-form-card label {
+            font-size: 12px;
+            font-weight: 700;
+        }
+        .todo-list {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 9px;
+        }
+        .todo-item {
+            min-width: 0;
+            padding: 12px;
+            background: #fffdfd;
+            border: 1px solid #eadce2;
+            border-radius: 6px;
+            overflow-wrap: anywhere;
+        }
+        .todo-item.completed {
+            background: #f9f4f6;
+            opacity: .78;
+        }
+        .todo-item label {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-weight: 600;
+            line-height: 1.45;
+        }
+        .todo-item input[type="checkbox"] {
+            margin-top: 4px;
+            accent-color: #c49aaa;
+            flex-shrink: 0;
+        }
+        .todo-item.completed .todo-task-title {
+            text-decoration: line-through;
+            color: #9c8e95;
+        }
+        .todo-deadline {
+            margin: 9px 0;
+            color: #9c8e95;
+            font-size: 11px;
+        }
+        .todo-deadline.is-overdue { color: #b65d7c; font-weight: 700; }
+        .todo-deadline.is-soon { color: #a87545; font-weight: 700; }
+        .todo-item-actions { display: flex; justify-content: flex-end; }
+        .todo-item-actions button {
+            padding: 4px 8px;
+            color: #9b536f;
+            background: #fff0f5;
+            border: 1px solid #ead5de;
+            border-radius: 4px;
+            font-size: 11px;
+        }
+        .coquette-sticky-note { isolation: isolate; }
+        @media (max-width: 760px) {
+            .todo-layout { grid-template-columns: 1fr; }
+            .todo-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        @media (max-width: 440px) {
+            .todo-list { grid-template-columns: 1fr; }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="browser">
+
+
+
+    <header class="browser-bar">
+
+        <div class="browser-brand">♡ THE LEARNING <span>ROOM</span> ୨୧</div>
+
+        <input id="globalSearch" class="search-box"
+
+               type="search" placeholder="⌕ Search your study space...">
+
+         <div class="browser-status">
+         a little place to bloom ♡
+         <a href="/logout" class="logout-btn">Log out ↗</a>
+     </div>
+     </header>
+
+
+
+    <div class="layout">
+
+
+
+        <!-- LEFT COLUMN: PROFILE FIRST, NAVIGATION BELOW -->
+        <aside class="panel">
+            <div class="sidebar-profile">
+                <div class="profile-cover {% if banner_url %}has-image{% endif %}" id="sidebarCover" {% if banner_url %}style="background-image: url('{{ banner_url }}'); background-size: cover; background-position: center;"{% endif %}>
+                    <label class="profile-cover-label" for="coverFile">✎ Change banner</label>
+                </div>
+                <div class="profile-content">
+                    <div class="avatar" id="sidebarAvatar">{% if avatar_url %}<img src="{{ avatar_url }}" alt="Profile photo">{% else %}🎀{% endif %}</div>
+                    <h2 class="profile-name" id="sidebarName">{{ profile_name }} ♡</h2>
+                    <p class="profile-bio" id="sidebarBio">{{ profile_bio or "student · learning little by little" }}</p>
+                    <button class="button profile-edit" type="button" data-page="profile">Edit profile ♡</button>
+                </div>
+            </div>
+            <div class="panel-title">୨୧ Navigation</div>
+            <div class="sidebar">
+                <div class="tiny-label">your space</div>
+                <nav class="nav-links">
+                    <button class="side-link active" data-page="home">⌂ Home</button>
+                    <button class="side-link" data-page="library">▤ My Library</button>
+                    <button class="side-link" data-page="notes">✎ My Notes</button>
+                    <button class="side-link" data-page="todos">♡ Study To-Do</button>
+                    <button class="side-link" data-page="community">♡ Community</button>
+                    <button class="side-link" data-page="profile">♙ My Profile</button>
+                </nav>
+                <div class="mini-note">
+                    <div class="bow">୨୧ ♡ ୨୧</div>
+                    <p>little steps count, too.</p>
+                    <span class="muted">take your time, darling!</span>
+                </div>
+                
+                
+                <div class="coquette-sticky-note">
+                 <div class="sticky-note-heading">
+                    <span>♡ little reminders</span>
+                    <span>୨୧</span>
+                </div>
+
+                <p id="sidebarStickyNoteText">
+                    Write a little reminder in My Notes ♡
+                </p>
+
+                <span class="sticky-note-signoff">with love, me ♡</span>
+             </div>
+
+
+            </div>
+        </aside>
+
+        <!-- CENTER COLUMN -->
+
+        <main class="main">
+
+
+
+            <!-- HOME -->
+
+            <section class="page active" id="page-home">
+
+                <div class="hero">
+
+                    <div class="tiny-label">your personal study space</div>
+
+                    <h1>Welcome to<br>The Learning Room ♡</h1>
+
+                    <p>
+
+                        Keep your materials close, collect your little notes,
+
+                        and find your own way to grow.
+
+                    </p>
+
+                    <button class="button primary" data-go="library">
+
+                        Enter my library ୨୧
+
+                    </button>
+
+                </div>
+
+
+
+                <section class="section">
+
+                    <div class="section-heading">
+
+                        <h2>♡ My little corner</h2>
+
+                        <span class="muted">made for you</span>
+
+                    </div>
+
+
+
+                    <div class="grid-2">
+
+                        <article class="card">
+
+                            <div class="card-icon">📚</div>
+
+                            <h3>My Learning Library</h3>
+
+                            <p>PDF, PPT, video, and useful links.</p>
+
+                            <button class="button" data-go="library">Open library ♡</button>
+
+                        </article>
+
+
+
+                        <article class="card">
+
+                            <div class="card-icon">📝</div>
+
+                            <h3>My Study Notes</h3>
+
+                            <p>Keep the little things you need to remember.</p>
+
+                            <button class="button" data-go="notes">Write a note ♡</button>
+
+                        </article>
+
+
+
+                        <article class="card">
+
+                            <div class="card-icon">🧸</div>
+
+                            <h3>Study Buddies</h3>
+
+                            <p>Discover people who enjoy learning, too.</p>
+
+                            <button class="button" data-go="community">Visit community ♡</button>
+
+                        </article>
+
+
+
+                        <article class="card">
+
+                            <div class="card-icon">🎀</div>
+
+                            <h3>My Profile</h3>
+
+                            <p>A little page about your learning journey.</p>
+
+                            <button class="button" data-go="profile">Edit profile ♡</button>
+
+                        </article>
+
+                    </div>
+
+                </section>
+
+
+
+                <section class="section">
+
+                    <div class="section-heading">
+
+                        <h2>୨୧ Recently added</h2>
+
+                    </div>
+
+                    <div id="homeRecent" class="material-list">
+
+                        <div class="empty">Your little collection will appear here ♡</div>
+
+                    </div>
+
+                </section>
+
+            </section>
+
+
+
+            <!-- LIBRARY -->
+
+            <section class="page" id="page-library">
+
+                <div class="page-intro">
+
+                    <div class="tiny-label">your personal collection</div>
+
+                    <h1 class="page-title">My Learning Library ♡</h1>
+
+                    <p class="muted">Books, files, videos, and little discoveries.</p>
+
+                </div>
+
+
+
+                <section class="section">
+
+                    <div class="section-heading">
+
+                        <h2>୨୧ My bookshelf</h2>
+
+                    </div>
+
+                    <div class="shelf">
+
+                        <div class="book"><span>📕</span><strong>PDF Materials</strong></div>
+
+                        <div class="book"><span>📔</span><strong>Lecture Slides</strong></div>
+
+                        <div class="book"><span>🎞️</span><strong>Video Lessons</strong></div>
+
+                        <div class="book"><span>☁️</span><strong>Drive Links</strong></div>
+
+                        <div class="book"><span>📝</span><strong>Study Notes</strong></div>
+
+                        <div class="book"><span>♡</span><strong>Favorites</strong></div>
+
+                    </div>
+
+                </section>
+
+
+
+                <section class="section">
+
+                    <div class="section-heading">
+
+                        <h2>Add a material ୨୧</h2>
+
+                    </div>
+
+                    
+<form id="materialForm" class="card form-grid" enctype="multipart/form-data">
+
+    <div class="field">
+        <label for="materialTitle">Material title</label>
+        <input id="materialTitle" name="title" required
+               maxlength="150"
+               placeholder="e.g. Introduction to Automation">
+    </div>
+
+    <div class="field">
+        <label for="materialType">Material type</label>
+        <select id="materialType" name="type">
+            <option value="PDF">PDF</option>
+            <option value="PPT">PowerPoint (PPT)</option>
+            <option value="Video">Video file</option>
+            <option value="Document">Word / Document</option>
+            <option value="Audio">Audio file</option>
+            <option value="Image">Image</option>
+            <option value="Drive link">Google Drive link</option>
+            <option value="Website link">Other website link</option>
+        </select>
+    </div>
+
+    <div class="field">
+        <label for="materialSubject">Subject / course</label>
+        <input id="materialSubject" name="subject"
+               placeholder="e.g. Basic Electronics">
+    </div>
+
+    <div class="field">
+        <label for="materialFile">Choose a file (optional)</label>
+        <input id="materialFile" name="file" type="file"
+               accept=".pdf,.ppt,.pptx,.pps,.ppsx,.doc,.docx,.odt,.txt,.mp4,.webm,.mov,.m4v,.mp3,.wav,.ogg,.png,.jpg,.jpeg,.webp,.gif,.csv,.xls,.xlsx,.zip">
+        <span class="muted">
+            PDF, PPT, documents, videos, audio, and images. Maximum 95 MB.
+        </span>
+    </div>
+
+    <div class="field">
+        <label for="materialUrl">Or paste a file / video / Google Drive URL</label>
+        <input id="materialUrl" name="url" type="url"
+               placeholder="https://...">
+    </div>
+
+    <div class="field">
+        <label for="materialPrivacy">Who can access this material?</label>
+        <select id="materialPrivacy" name="privacy">
+            <option value="Private">Private — only me</option>
+            <option value="Public">Public</option>
+        </select>
+    </div>
+
+    <div class="field">
+        <button type="submit" class="button primary">
+            Add to my library ♡
+        </button>
+        <p id="materialMessage" class="muted" role="status"></p>
+    </div>
+
+</form>
+
+
+                </section>
+
+
+
+                <section class="section">
+
+                    <div class="section-heading">
+
+                        <h2>My materials</h2>
+
+                        <span class="muted" id="materialCount">0 items</span>
+
+                    </div>
+
+                    <div id="materialList" class="material-list">
+
+                        <div class="empty">No materials yet. Add your first one above ♡</div>
+
+                    </div>
+
+                </section>
+
+            </section>
+
+
+
+            <!-- NOTES -->
+
+            <section class="page" id="page-notes">
+
+                <div class="page-intro">
+
+                    <div class="tiny-label">just for you</div>
+
+                    <h1 class="page-title">My Study Notes ♡</h1>
+
+                    <p class="muted">A quiet little place for your thoughts.</p>
+
+                </div>
+
+
+
+                <form id="noteForm" class="card form-grid">
+
+                    <div class="field">
+
+                        <label for="noteTitle">Note title</label>
+
+                        <input id="noteTitle" required placeholder="Today's little reminder">
+
+                    </div>
+
+                    <div class="field">
+
+                        <label for="noteSubject">Subject</label>
+
+                        <input id="noteSubject" placeholder="Course or topic">
+
+                    </div>
+
+                    <div class="field">
+
+                        <label for="noteBody">Your note</label>
+
+                        <textarea id="noteBody" required
+
+                                  placeholder="Write what you want to remember..."></textarea>
+
+                    </div>
+
+                    <button class="button primary" type="submit">Save my note ♡</button>
+
+                    <div class="muted">
+
+                        Demo only: notes currently stay in this browser session.
+
+                    </div>
+
+                </form>
+
+
+
+                <section class="section">
+
+                    <div class="section-heading"><h2>My notebook ୨୧</h2></div>
+
+                    <div id="noteList" class="note-list">
+
+                        <div class="empty">Your notes will appear here ♡</div>
+
+                    </div>
+
+                </section>
+
+            </section>
+
+
+<!-- STUDY TO-DO -->
+<section class="page" id="page-todos">
+    <div class="page-heading">
+        <p class="eyebrow">A LITTLE STEP EVERY DAY ♡</p>
+        <h1>Study To-Do List 🎀</h1>
+        <p>Small tasks, big progress. Take your time, darling!</p>
+    </div>
+
+    <div class="todo-layout">
+        <section class="card todo-form-card">
+            <h2>୨୧ Add a little task</h2>
+            <form id="todoForm" class="form-grid">
+                <label for="todoTitle">What do you need to do? ♡</label>
+                <input id="todoTitle" type="text" placeholder="e.g. Finish my assignment" maxlength="200" required>
+
+                <label for="todoDeadline">Deadline (optional)</label>
+                <input id="todoDeadline" type="date">
+
+                <button class="button primary" type="submit">＋ Add my task ♡</button>
+                <p class="muted" style="margin:0;font-size:11px;">Your deadline will be marked in the Study Calendar.</p>
+            </form>
+        </section>
+
+        <section class="card todo-list-card">
+            <h2>♡ My little tasks</h2>
+            <div id="todoList" class="todo-list">
+                <div class="empty">Your tasks will appear here ♡</div>
+            </div>
+        </section>
+    </div>
+</section>
+
+
+            <!-- COMMUNITY -->
+
+            <section class="page" id="page-community">
+
+                <div class="page-intro">
+
+                    <div class="tiny-label">learn together</div>
+
+                    <h1 class="page-title">Student Community ♡</h1>
+
+                    <p class="muted">
+
+                        Meet study buddies, share questions, and discuss your courses.
+
+                    </p>
+
+                </div>
+
+
+
+                <form id="postForm" class="card form-grid">
+
+                    <div class="field">
+
+                        <label for="postTitle">Discussion title</label>
+
+                        <input id="postTitle" required
+
+                               placeholder="e.g. Anyone studying calculus?">
+
+                    </div>
+
+                    <div class="field">
+
+                        <label for="postBody">What would you like to discuss?</label>
+
+                        <textarea id="postBody" required
+
+                                  placeholder="Ask a question or share a study tip..."></textarea>
+
+                    </div>
+
+                    <button class="button primary" type="submit">Create discussion ♡</button>
+
+                    <div class="muted">
+
+                        Demo only: discussions are not shared with other users yet.
+
+                    </div>
+
+                </form>
+
+
+
+                <section class="section">
+
+                    <div class="section-heading"><h2>Discussion board ୨୧</h2></div>
+
+                    <div id="postList" class="post-list">
+
+                        <div class="empty">Your first discussion can start here ♡</div>
+
+                    </div>
+
+                </section>
+
+
+
+                <section class="section">
+
+                    <div class="section-heading"><h2>Find study buddies</h2></div>
+
+                    <div class="person">
+
+                        <div class="avatar">🎀</div>
+
+                        <div class="person-info">
+
+                            <h3>Study buddy space</h3>
+
+                            <p class="muted">Profiles from other students will appear here when accounts are connected.</p>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </section>
+
+
+
+            <!-- PROFILE -->
+
+            <section class="page" id="page-profile">
+
+                <div class="page-intro">
+
+                    <div class="tiny-label">a page about you</div>
+
+                    <h1 class="page-title">My Scrapbook Profile ♡</h1>
+
+                    <p class="muted">Make this little corner feel like yours.</p>
+
+                </div>
+
+
+
+                <div class="panel">
+
+                    <div class="profile-cover {% if banner_url %}has-image{% endif %}" id="profileCover" {% if banner_url %}style="background-image: url('{{ banner_url }}'); background-size: cover; background-position: center;"{% endif %}>{% if not banner_url %}୨୧ ── lace, little bows & dreams ── ୨୧{% endif %}</div>
+
+                    <div class="profile-content">
+
+                        <div class="avatar" id="profileAvatar">{% if avatar_url %}<img src="{{ avatar_url }}" alt="Profile photo">{% else %}🎀{% endif %}</div>
+
+                        <h2 class="profile-name" id="profileName">{{ profile_name }} ♡</h2>
+
+                        <p class="profile-bio" id="profileBio">{{ profile_bio or "student · learning little by little" }}</p>
+
+                    </div>
+
+                </div>
+
+
+
+                <form id="profileForm" class="card form-grid section" action="/update-profile" method="POST" enctype="multipart/form-data">
+
+                    <div class="field">
+
+                        <label for="username">Display name</label>
+
+                        <input id="username" name="name" value="{{ profile_name }}" placeholder="Your name or nickname" maxlength="50" required>
+
+                    </div>
+
+                    <div class="field">
+
+                        <label for="bio">Little bio</label>
+
+                        <textarea id="bio" name="bio" placeholder="Your major, interests, and learning goals..." maxlength="300">{{ profile_bio }}</textarea>
+
+                    </div>
+
+                    <div class="field">
+
+                        <label for="coverFile">Scrapbook banner (optional)</label>
+                        <input id="coverFile" name="coverFile" type="file" accept=".png,.jpg,.jpeg,.webp">
+                        <span class="muted">Choose a picture from your device for your profile banner.</span>
+                    </div>
+
+                    <div class="field">
+                        <label for="avatarFile">Profile photo (optional)</label>
+
+                        <input id="avatarFile" name="avatarFile" type="file" accept=".png,.jpg,.jpeg,.webp">
+
+                        <span class="muted">
+
+                            PNG, JPG, JPEG, or WEBP · maximum 5 MB.
+
+                        </span>
+
+                    </div>
+
+                    <button class="button primary" type="submit">Update my profile ♡</button>
+
+                </form>
+
+            </section>
+
+
+
+        </main>
+
+
+
+        <!-- RIGHT COLUMN -->
+
+        <aside class="panel right-panel">
+
+            <div class="panel-title">♡ Little details</div>
+
+            <div class="inner">
+
+
+
+                <section class="widget">
+
+                    <h3>୨୧ About this space</h3>
+
+                    <p class="muted">
+
+                        A little corner for learning, collecting notes,
+
+                        and growing at your own pace.
+
+                    </p>
+
+                </section>
+
+
+
+                <section class="widget">
+
+                    <h3>♡ Today's date</h3>
+
+                    <div id="todayDate" class="muted"></div>
+
+                    <div id="clock" style="font-size:22px; margin-top:4px;">00:00:00</div>
+
+                </section>
+
+
+
+                <section class="widget">
+
+                    <h3>Study calendar</h3>
+
+                    <div id="calendarTitle" class="muted"></div>
+
+                    <div class="calendar" id="calendar"></div>
+
+                </section>
+
+
+
+                <section class="widget">
+
+                    <h3>My progress ♡</h3>
+
+                    <div class="muted"><span id="progressCount">0</span> materials collected</div>
+
+                    <div class="progress-track">
+
+                        <div class="progress-fill" id="progressFill"></div>
+
+                    </div>
+
+                    <p class="muted">Little steps count.</p>
+
+                </section>
+
+
+
+                <section class="widget">
+
+                    <h3>Music corner</h3>
+
+                    <div class="music-box">
+
+                        <span>♫ your study playlist</span>
+
+                        <p class="muted">Choose an audio file from your device to preview it.</p>
+
+                        <input id="musicFile" type="file" accept="audio/*">
+
+                        <audio id="musicPlayer" controls class="hidden"></audio>
+
+                    </div>
+
+                </section>
+
+
+
+                <section class="widget">
+
+                    <h3>Little reminder</h3>
+
+                    <div class="mini-note">
+
+                        Drink some water ♡<br>
+
+                        Stretch a little.<br>
+
+                        Be kind to yourself.
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </aside>
+
+
+
+    </div>
+
+
+
+    <footer class="footer">
+
+        ୨୧ The Learning Room ♡ made for little steps and big dreams ୨୧
+
+        <br>Vintage internet inspired · Learn at your own pace.
+
+    </footer>
+
+
+
+</div>
+
+
+
+<script>
+
+    // Page navigation
+
+    const pageNames = ["home", "library", "notes", "todos", "community", "profile"];
+
+
+
+    function openPage(name) {
+
+        if (!pageNames.includes(name)) return;
+
+
+
+        document.querySelectorAll(".page").forEach(page => {
+
+            page.classList.toggle("active", page.id === "page-" + name);
+
+        });
+
+
+
+        document.querySelectorAll("[data-page]").forEach(button => {
+
+            button.classList.toggle("active", button.dataset.page === name);
+
+        });
+
+
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
+
+    }
+
+
+
+    document.querySelectorAll("[data-page]").forEach(button => {
+
+        button.addEventListener("click", () => openPage(button.dataset.page));
+
+    });
+
+
+
+    document.querySelectorAll("[data-go]").forEach(button => {
+
+        button.addEventListener("click", () => openPage(button.dataset.go));
+
+    });
+
+
+
+    // Temporary demo data. This is not a permanent database.
+
+    let materials = [];
+
+    const notes = [];
+
+    const posts = [];
+
+
+
+    function escapeHTML(value) {
+
+        return String(value).replace(/[&<>"']/g, character => ({
+
+            "&": "&amp;",
+
+            "<": "&lt;",
+
+            ">": "&gt;",
+
+            '"': "&quot;",
+
+            "'": "&#39;"
+
+        })[character]);
+
+    }
+
+
+
+    function getMaterialIcon(type) {
+
+        return {
+
+            "PDF": "📕",
+
+            "PPT": "📔",
+
+            "Video": "🎞️",
+
+            "Drive link": "☁️",
+
+            "Website link": "🔗"
+
+        }[type] || "📄";
+
+    }
+
+
+async function loadMaterials() {
+    const response = await fetch("/api/materials");
+
+    if (!response.ok) {
+        throw new Error("Could not load materials. Please log in again.");
+    }
+
+    const data = await response.json();
+    materials = data.materials || [];
+    renderMaterials();
+}
+
+function renderMaterials() {
+    const list = document.getElementById("materialList");
+    const recent = document.getElementById("homeRecent");
+    const search = document.getElementById("globalSearch");
+    const query = search ? search.value.trim().toLowerCase() : "";
+
+    const visible = materials.filter(item =>
+        `${item.title} ${item.subject || ""} ${item.type || ""} ${item.fileName || ""}`
+            .toLowerCase().includes(query)
+    );
+
+    document.getElementById("materialCount").textContent =
+        `${materials.length} ${materials.length === 1 ? "item" : "items"}`;
+
+    document.getElementById("progressCount").textContent = materials.length;
+    document.getElementById("progressFill").style.width =
+        Math.min(materials.length * 10, 100) + "%";
+
+    list.innerHTML = visible.length ? visible.map(item => `
+        <article class="material-row">
+            <div style="min-width:0;flex:1">
+                <h3>${getMaterialIcon(item.type)} ${escapeHTML(item.title)}</h3>
+                <p>${escapeHTML(item.subject || "No subject")} · ${escapeHTML(item.type || "Material")}</p>
+                <p><span class="privacy-tag">${escapeHTML(item.privacy || "Private")}</span></p>
+                ${item.fileName ? `<p>📎 ${escapeHTML(item.fileName)}</p>` : ""}
+                <div class="material-actions">
+                    ${item.fileUrl
+                        ? `<a class="button primary" href="${escapeHTML(item.viewUrl)}">Open / Preview ♡</a>
+                           <a class="small-button" href="${escapeHTML(item.fileUrl)}?download=1">Download</a>`
+                        : ""}
+                    ${item.url
+                        ? `<a class="button primary" href="${escapeHTML(item.url)}" target="_blank" rel="noopener noreferrer">Open link ↗</a>`
+                        : ""}
+                </div>
+            </div>
+            <button type="button" class="small-button"
+                    data-remove-material="${item.id}">Remove</button>
+        </article>
+    `).join("") : '<div class="empty">No matching materials yet ♡</div>';
+
+    const latest = materials.slice(0, 3);
+
+    recent.innerHTML = latest.length ? latest.map(item => `
+        <article class="material-row">
+            <div style="min-width:0">
+                <h3>${getMaterialIcon(item.type)} ${escapeHTML(item.title)}</h3>
+                <p>${escapeHTML(item.subject || item.type || "Material")} · ${escapeHTML(item.privacy || "Private")}</p>
+                ${item.fileUrl
+                    ? `<a href="${escapeHTML(item.viewUrl)}">Open / Preview ♡</a>`
+                    : ""}
+                ${item.url
+                    ? `<a href="${escapeHTML(item.url)}" target="_blank" rel="noopener noreferrer">Open link ↗</a>`
+                    : ""}
+            </div>
+        </article>
+    `).join("") : '<div class="empty">Your little collection will appear here ♡</div>';
+}
+
+document.getElementById("materialList").addEventListener("click", async event => {
+    const button = event.target.closest("[data-remove-material]");
+    if (!button) return;
+
+    if (!confirm("Remove this material from your library?")) return;
+
+    button.disabled = true;
+
+    try {
+        const response = await fetch(
+            `/api/materials/${button.dataset.removeMaterial}`,
+            { method: "DELETE" }
+        );
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            throw new Error(result.error || "Could not remove material.");
+        }
+
+        await loadMaterials();
+    } catch (error) {
+        alert(error.message);
+        button.disabled = false;
+    }
+});
+
+
+document.getElementById("materialForm").addEventListener("submit", async event => {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const message = document.getElementById("materialMessage");
+    const file = document.getElementById("materialFile").files[0];
+    const url = document.getElementById("materialUrl").value.trim();
+    const title = document.getElementById("materialTitle").value.trim();
+    const submitButton = form.querySelector('button[type="submit"]');
+
+    if (!title) {
+        message.textContent = "Please enter a material title ♡";
+        return;
+    }
+
+    if (!file && !url) {
+        message.textContent = "Please choose a file or enter a link ♡";
+        return;
+    }
+
+    if (file && file.size > 95 * 1024 * 1024) {
+        message.textContent = "The maximum file size is 95 MB.";
+        return;
+    }
+
+    if (url) {
+        try {
+            const parsed = new URL(url);
+            if (!["http:", "https:"].includes(parsed.protocol)) {
+                throw new Error("Invalid URL");
+            }
+        } catch {
+            message.textContent =
+                "Please enter a valid link beginning with https://";
+            return;
+        }
+    }
+
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("type", document.getElementById("materialType").value);
+    formData.append("subject", document.getElementById("materialSubject").value.trim());
+    formData.append("privacy", document.getElementById("materialPrivacy").value);
+    formData.append("url", url);
+
+    if (file) {
+        formData.append("file", file);
+    }
+
+    submitButton.disabled = true;
+    submitButton.textContent = "Uploading… ♡";
+    message.textContent = "Saving your material. Please wait…";
+
+    try {
+        const response = await fetch("/api/materials", {
+            method: "POST",
+            body: formData
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            throw new Error(result.error || "Could not save the material.");
+        }
+
+        form.reset();
+        message.textContent = "Your material has been saved ♡";
+
+        // Refresh the material list from the server if the loader exists.
+        
+       if (typeof loadMaterials === "function") {
+    await loadMaterials();
+} else {
+    materials.unshift(result);
+    renderMaterials();
+}       
+
+    } catch (error) {
+        message.textContent = error.message ||
+            "Upload failed. Please check your connection and try again.";
+    } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = "Add to my library ♡";
+    }
+});
+
+
+
+    // Notes
+
+function renderSidebarStickyNote() {
+    const noteText = document.getElementById("sidebarStickyNoteText");
+    if (!noteText) return;
+
+    if (!notes || notes.length === 0) {
+        noteText.textContent = "Write a little reminder in My Notes ♡";
+        return;
+    }
+
+    const latestNote = notes[notes.length - 1];
+    noteText.textContent = latestNote.title + "\n\n" + latestNote.body;
+}
+
+
+    function renderNotes() {
+
+        const list = document.getElementById("noteList");
+
+        const query = document.getElementById("globalSearch").value.trim().toLowerCase();
+
+
+
+        const visible = notes.filter(note =>
+
+            (note.title + " " + note.subject + " " + note.body)
+
+                .toLowerCase().includes(query)
+
+        );
+
+
+
+        list.innerHTML = visible.length ? visible.slice().reverse().map(note => `
+
+            
+    <article class="note-item">
+        <h3>♡ ${escapeHTML(note.title)}</h3>
+        <span class="muted">${escapeHTML(note.subject || "Personal note")}</span>
+        <p>${escapeHTML(note.body)}</p>
+        <div class="note-actions">
+           <button type="button" onclick="editNote(${note.id})">✎ Edit</button>
+           <button type="button" onclick="deleteNote(${note.id})">♡ Hapus</button>
+        </div>
+</article>
+
+
+                `).join("") : '<div class="empty">No matching notes yet ♡</div>';
+
+        renderSidebarStickyNote();
+    }
+
+
+async function loadSavedNotes() {
+    try {
+        const response = await fetch("/api/notes");
+
+        if (!response.ok) {
+            console.error("Catatan gagal dimuat.");
+            return;
+        }
+
+        const data = await response.json();
+
+        notes.length = 0;
+        notes.push(...data.notes.reverse());
+
+        renderNotes();
+    } catch (error) {
+        console.error("Gagal memuat catatan:", error);
+    }
+}
+
+loadSavedNotes();
+
+async function editNote(noteId) {
+    const note = notes.find(item => item.id === noteId);
+    if (!note) {
+        alert("Catatan tidak ditemukan ♡");
+        return;
+    }
+
+    const title = prompt("Edit judul catatan:", note.title);
+    if (title === null) return;
+
+    const subject = prompt("Edit mata pelajaran:", note.subject || "");
+    if (subject === null) return;
+
+    const body = prompt("Edit isi catatan:", note.body);
+    if (body === null) return;
+
+    if (!title.trim() || !body.trim()) {
+        alert("Judul dan isi catatan wajib diisi ♡");
+        return;
+    }
+
+    try {
+        const response = await fetch(`/api/notes/${noteId}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                title: title.trim(),
+                subject: subject.trim(),
+                body: body.trim()
+            })
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            alert(result.error || "Gagal mengedit catatan ♡");
+            return;
+        }
+
+        await loadSavedNotes();
+        alert("Catatan berhasil diperbarui ♡");
+    } catch (error) {
+        console.error(error);
+        alert("Tidak bisa mengedit catatan. Coba lagi ♡");
+    }
+}
+
+async function deleteNote(noteId) {
+    const confirmed = confirm("Yakin mau menghapus catatan ini? ♡");
+    if (!confirmed) return;
+
+    try {
+        const response = await fetch(`/api/notes/${noteId}`, {
+            method: "DELETE"
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            alert(result.error || "Gagal menghapus catatan ♡");
+            return;
+        }
+
+        await loadSavedNotes();
+        alert("Catatan berhasil dihapus ♡");
+    } catch (error) {
+        console.error(error);
+        alert("Tidak bisa menghapus catatan. Coba lagi ♡");
+    }
+}
+
+    
+document.getElementById("noteForm").addEventListener("submit", async event => {
+    event.preventDefault();
+
+    const title = document.getElementById("noteTitle").value.trim();
+    const subject = document.getElementById("noteSubject").value.trim();
+    const body = document.getElementById("noteBody").value.trim();
+
+    if (!title || !body) {
+        alert("Judul dan isi catatan wajib diisi ♡");
+        return;
+    }
+
+    try {
+        const response = await fetch("/api/notes", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ title, subject, body })
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            alert(result.error || "Catatan gagal disimpan ♡");
+            return;
+        }
+
+        notes.push(result);
+        event.target.reset();
+        renderNotes();
+    } catch (error) {
+        alert("Tidak bisa menyimpan catatan. Coba lagi ya ♡");
+        console.error(error);
+    }
+});
+
+
+async function loadTodos() {
+    try {
+        const response = await fetch("/api/todos");
+
+        if (!response.ok) {
+            console.error("Gagal memuat tugas.");
+            return;
+        }
+
+        const data = await response.json();
+        window.studyTodos = data.todos || [];
+        const list = document.getElementById("todoList");
+
+        list.innerHTML = data.todos.length
+            ? data.todos.map(todo => {
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                const deadlineDate = todo.deadline ? new Date(todo.deadline + "T00:00:00") : null;
+                const overdue = deadlineDate && deadlineDate < today && !todo.completed;
+                const dueSoon = deadlineDate && deadlineDate.getTime() === today.getTime() && !todo.completed;
+                const deadlineClass = overdue ? "is-overdue" : dueSoon ? "is-soon" : "";
+                const deadlineLabel = !todo.deadline
+                    ? "No deadline ♡"
+                    : overdue ? "Overdue · " + todo.deadline
+                    : dueSoon ? "Due today ♡ · " + todo.deadline
+                    : "Deadline · " + todo.deadline;
+                return `
+                    <article class="todo-item ${todo.completed ? "completed" : ""}">
+                        <label>
+                            <input type="checkbox" ${todo.completed ? "checked" : ""}
+                                onchange="toggleTodo(${todo.id}, this.checked)">
+                            <span class="todo-task-title">${escapeHTML(todo.title)}</span>
+                        </label>
+                        <p class="todo-deadline ${deadlineClass}">
+                            ${escapeHTML(deadlineLabel)}
+                        </p>
+                        <div class="todo-item-actions">
+                            <button type="button" onclick="deleteTodo(${todo.id})">♡ Delete</button>
+                        </div>
+                    </article>
+                `;
+            }).join("")
+            : '<div class="empty" style="grid-column:1/-1;">Your tasks will appear here ♡</div>';
+        renderCalendar();
+    } catch (error) {
+        console.error("Gagal memuat tugas:", error);
+    }
+}
+
+document.getElementById("todoForm").addEventListener("submit", async event => {
+    event.preventDefault();
+
+    const title = document.getElementById("todoTitle").value.trim();
+    const deadline = document.getElementById("todoDeadline").value;
+
+    if (!title) return;
+
+    try {
+        const response = await fetch("/api/todos", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ title, deadline })
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            alert(result.error || "Gagal menambahkan tugas ♡");
+            return;
+        }
+
+        event.target.reset();
+        await loadTodos();
+        renderCalendar();
+    } catch (error) {
+        console.error(error);
+        alert("Tugas gagal disimpan. Coba lagi ya ♡");
+    }
+});
+
+async function toggleTodo(todoId, completed) {
+    const response = await fetch(`/api/todos/${todoId}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ completed })
+    });
+
+    if (!response.ok) {
+        alert("Status tugas gagal diperbarui ♡");
+        await loadTodos();
+        return;
+    }
+
+    await loadTodos();
+}
+
+async function deleteTodo(todoId) {
+    if (!confirm("Yakin mau menghapus tugas ini? ♡")) return;
+
+    const response = await fetch(`/api/todos/${todoId}`, {
+        method: "DELETE"
+    });
+
+    if (!response.ok) {
+        alert("Tugas gagal dihapus ♡");
+        return;
+    }
+
+    await loadTodos();
+}
+
+loadTodos();
+
+
+    // Community demo
+
+    function renderPosts() {
+
+        const list = document.getElementById("postList");
+
+        const query = document.getElementById("globalSearch").value.trim().toLowerCase();
+
+
+
+        const visible = posts.filter(post =>
+
+            (post.title + " " + post.body).toLowerCase().includes(query)
+
+        );
+
+
+
+        list.innerHTML = visible.length ? visible.slice().reverse().map(post => `
+
+            <article class="post-item">
+
+                <div class="post-meta">🎀 Your demo profile · local preview</div>
+
+                <h3>${escapeHTML(post.title)}</h3>
+
+                <p>${escapeHTML(post.body)}</p>
+
+            </article>
+
+        `).join("") : '<div class="empty">No matching discussions yet ♡</div>';
+
+    }
+
+
+
+    document.getElementById("postForm").addEventListener("submit", event => {
+
+        event.preventDefault();
+
+
+
+        posts.push({
+
+            title: document.getElementById("postTitle").value.trim(),
+
+            body: document.getElementById("postBody").value.trim()
+
+        });
+
+
+
+        event.target.reset();
+
+        renderPosts();
+
+    });
+
+
+
+    // Save profile details and image files to Flask.
+    document.getElementById("profileForm").addEventListener("submit", async event => {
+        event.preventDefault();
+        const form = event.currentTarget;
+        const formData = new FormData(form);
+        const name = String(formData.get("name") || "").trim();
+        const bio = String(formData.get("bio") || "").trim();
+
+        if (!name || name.length > 50) {
+            alert("Nama harus diisi dan maksimal 50 karakter.");
+            return;
+        }
+        if (bio.length > 300) {
+            alert("Bio maksimal 300 karakter.");
+            return;
+        }
+
+        try {
+            const response = await fetch("/update-profile", { method: "POST", body: formData });
+            if (!response.ok) {
+                const message = await response.text();
+                throw new Error(message || "Gagal menyimpan profil.");
+            }
+            window.location.assign(response.url || "/");
+        } catch (error) {
+            console.error("Update profile failed:", error);
+            alert(error.message || "Profil gagal disimpan. Periksa terminal VS Code.");
+        }
+    });
+
+
+
+    // Global search across demo materials, notes, and discussions
+
+    document.getElementById("globalSearch").addEventListener("input", () => {
+
+        renderMaterials();
+
+        renderNotes();
+
+        renderPosts();
+
+    });
+
+
+
+    // Calendar and clock
+
+    function renderClock() {
+
+        const now = new Date();
+
+
+
+        document.getElementById("clock").textContent =
+
+            now.toLocaleTimeString("en-GB");
+
+
+
+        document.getElementById("todayDate").textContent =
+
+            now.toLocaleDateString("en-GB", {
+
+                day: "numeric",
+
+                month: "short",
+
+                year: "numeric"
+
+            });
+
+    }
+
+
+
+    function renderCalendar() {
+
+        const now = new Date();
+
+        const year = now.getFullYear();
+
+        const month = now.getMonth();
+
+        const firstDay = new Date(year, month, 1).getDay();
+
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+
+
+        document.getElementById("calendarTitle").textContent =
+
+            now.toLocaleDateString("en-US", { month: "long", year: "numeric" });
+
+
+
+        const calendar = document.getElementById("calendar");
+
+        const dayNames = ["S", "M", "T", "W", "T", "F", "S"];
+
+
+
+        calendar.innerHTML = dayNames.map(day => `<span>${day}</span>`).join("");
+
+
+
+        for (let i = 0; i < firstDay; i++) {
+
+            calendar.innerHTML += "<span></span>";
+
+        }
+
+
+
+        
+for (let day = 1; day <= daysInMonth; day++) {
+    const todayClass = day === now.getDate() ? "today" : "";
+
+    
+const deadlineTasks = (window.studyTodos || []).filter(todo => {
+    if (!todo.deadline || todo.completed) return false;
+
+    const deadlineDate = new Date(todo.deadline + "T00:00:00");
+
+    return (
+        deadlineDate.getFullYear() === year &&
+        deadlineDate.getMonth() === month &&
+        deadlineDate.getDate() === day
+    );
+});
+
+
+    const deadlineClass = deadlineTasks.length ? "has-deadline" : "";
+    const taskTitles = deadlineTasks
+        .map(todo => todo.title)
+        .join(", ")
+        .replace(/"/g, "&quot;");
+
+    calendar.innerHTML += `
+        <span
+            class="${todayClass} ${deadlineClass}"
+            title="${taskTitles}"
+        >${day}${deadlineTasks.length ? " ♡" : ""}</span>
+    `;
+}
+    } // End renderCalendar()
+
+
+    // Local audio preview only
+
+    let musicUrl = "";
+
+
+
+    document.getElementById("musicFile").addEventListener("change", event => {
+
+        const file = event.target.files[0];
+
+        const player = document.getElementById("musicPlayer");
+
+
+
+        if (!file) return;
+
+
+
+        if (musicUrl) URL.revokeObjectURL(musicUrl);
+
+        musicUrl = URL.createObjectURL(file);
+
+
+
+        player.src = musicUrl;
+
+        player.classList.remove("hidden");
+
+    });
+
+
+
+    renderClock();
+
+    setInterval(renderClock, 1000);
+
+    renderCalendar();
+
+    loadMaterials();
+
+    renderNotes();
+
+    renderPosts();
+
+</script>
+
+</body>
+
+</html>
